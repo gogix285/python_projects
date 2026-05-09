@@ -1,9 +1,8 @@
 from time import sleep
-from writing.System import System
 from random import randint
 import unicodedata
 
-System.version = "2.5.19"
+version = "2.5.19"
 
 with open("besede.txt", "r", encoding="utf-8") as f:
     content = f.read().lstrip()
@@ -84,7 +83,7 @@ if maininput == "x":
             lines = "\n".join(lines)
             with open("besede.txt", "w", encoding="utf-8") as filewrite:
                 filewrite.write(lines)
-    print(f"infos: version:{System.version}")
+    print(f"infos: version:{version}")
     print(f"       author : Maj Flajnik")
 #_______________________________________________________________________________________________________________________
 elif maininput == "j" or maininput == "j -mode -db" or maininput == "j -m -db": #db-debug
@@ -176,7 +175,7 @@ elif maininput == "j" or maininput == "j -mode -db" or maininput == "j -m -db": 
         with open("besede.txt", "w", encoding="utf-8") as filewrite:
             filewrite.write(lines)
     print(f"infos: ")
-    print(f"       version: {System.version}")
+    print(f"       version: {version}")
     print(f"       author : Maj Flajnik")
 elif maininput == "n":
     print("terminating code...")
@@ -185,4 +184,3 @@ elif maininput == "n -s":
     print("terminating code...")
 else:
     print('napačen vnos')
-
