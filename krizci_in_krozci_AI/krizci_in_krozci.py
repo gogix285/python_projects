@@ -1,11 +1,13 @@
 import random
 import time
+#import writing.System
 from typing import Literal
 
-version = "v1.4.68" #v2.x.x bo ko narediš razmišljanje!!!!
+
+version = "v1.5.79" #v2.x.x bo ko narediš razmišljanje!!!!
 
 moznosti = ["a1", "b1", "c1", "a2", "b2", "c2", "a3", "b3", "c3"]
-
+dano = []
 
 class Mreza(object):
     a1=" "
@@ -116,6 +118,21 @@ def konec_igre_ali_rac():
         return True
     else:
         return False
+def beri(kaj:Literal["zmaga.txt", "zgubil.txt"]):
+    with open(kaj, "r") as f:
+        _in = f.read()
+        dvadela = _in.split("|")
+        b = []
+        for i in dvadela:
+            b.append(i.split(","))
+def dodaj(kaj, kam:Literal["zmaga.txt", "zgubil.txt"]):
+    with open(kam, "a") as f:
+        _dvadela = []
+        for i in kaj:
+            _dvadela.append(",".join(i))
+        in_ = "|".join(_dvadela)
+        f.write("|")
+        f.write(in_)
 
 mreza = Mreza()
 
@@ -131,6 +148,7 @@ while True:
     while not player_da in moznosti:
         print("ne moreš")
         player_da = str(input("Kam daš: "))
+    dano.append(player_da)
     dodaj_v_mrezo(player_da, "player")
     kazi_mrezo()
     time.sleep(1)
@@ -138,16 +156,18 @@ while True:
     # preveri za konec igre prvic
     if konec_igre_ali_player():
         print("ZMAGAL SI!!!! BRAVO")
+        dodaj([dano], "zgubil.txt")
         break
     elif konec_igre_ali_rac():
         print("žal si zgubil. Več sreče prihodnjič")
+        dodaj([dano], "zmaga.txt")
         break
 
     #
     print("*******************************")
     #rac izbira in prikaz
     rac_da = random.choice(moznosti)
-    print(rac_da)
+    dano.append(rac_da)
     dodaj_v_mrezo(rac_da, "rac")
     kazi_mrezo()
     time.sleep(1)
@@ -155,9 +175,12 @@ while True:
     #preveri za konec igre drugic
     if konec_igre_ali_player():
         print("ZMAGAL SI!!!! BRAVO")
+        dodaj([dano], "zgubil.txt")
         break
     elif konec_igre_ali_rac():
         print("žal si zgubil. Več sreče prihodnjič")
+        dodaj([dano], "zmaga.txt")
         break
-
+    print(dano)
+print(dano)
 print("done")
