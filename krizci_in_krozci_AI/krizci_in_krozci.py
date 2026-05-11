@@ -4,7 +4,7 @@ import time
 from typing import Literal
 
 
-version = "v1.5.79" #v2.x.x bo ko narediš razmišljanje!!!!
+version = "v1.6.82" #v2.x.x bo ko narediš razmišljanje!!!!
 
 moznosti = ["a1", "b1", "c1", "a2", "b2", "c2", "a3", "b3", "c3"]
 dano = []
