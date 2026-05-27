@@ -1,6 +1,5 @@
 import random
 import time
-#import writing.System
 from typing import Literal
 
 
